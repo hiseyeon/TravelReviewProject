@@ -24,4 +24,8 @@ urlpatterns = [
     path("home/", include("travel.urls")), # 127.0.0.1:8000/home/ 이 blog앱의 기본 Path로 설정됨
     path("country/", include("country.urls")),
     path("review/", include("review.urls")),
+    path("reviewHome/", include("reviewHome.urls")),
+
+
+    path('create/', views.create, name='create'),
 ]

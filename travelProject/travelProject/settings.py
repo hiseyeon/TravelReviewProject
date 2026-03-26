@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'travel',
     'country',
     'review',
+    'reviewHome',
 ]
 
 MIDDLEWARE = [
