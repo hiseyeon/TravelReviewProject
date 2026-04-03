@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404 
 from travel.models import Review, Comment
 from travel.forms import ReviewModelForm, CommentForm
+from django.core.paginator import Paginator
 
 # Create your views here.
 def reviewHome(request):
@@ -8,6 +9,9 @@ def reviewHome(request):
 
 def blog_list(request):
     review = Review.objects.all().order_by('-created_at')
+    my_paginator = Paginator(review, 5)
+    page_num = request.GET.get('page')
+    review = my_paginator.get_page(page_num)
     return render(request, "blog_list.html", {"review" : review})
 
 

@@ -1,4 +1,4 @@
-# posts앱의 urls.py
+# review앱의 urls.py
 from django.contrib import admin
 from django.urls import path
 from review import views
