@@ -19,8 +19,8 @@ def blog_detail(request, blog_id):
 def blog_update(request, id):
     review = get_object_or_404(Review, pk=id) 
 
-    if request.method == 'POST':
-        form = ReviewModelForm(request.POST, instance=review) 
+    if request.method == 'POST' or request.method == 'FILES':
+        form = ReviewModelForm(request.POST, request.FILES, instance=review) 
         if form.is_valid():
             form.save()
             return redirect('blog_detail', blog_id=review.id) 

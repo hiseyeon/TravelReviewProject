@@ -92,6 +92,9 @@
               <article>
                 <h1 class="fw-bolder mb-3">{{ review.title }}</h1>
                 <div class="text-muted fst-italic mb-4">{{ review.created_at }}</div>
+                {% if review.photo %}
+                <img src="{{ review.photo.url }}" alt="" height="300">
+                {% endif %}
                 <p class="fs-5 mb-4" style="white-space: pre-wrap;">{{ review.body }}</p>
               </article>
 

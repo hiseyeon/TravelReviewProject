@@ -4,4 +4,4 @@ from .models import Review
 class ReviewModelForm(forms.ModelForm):
     class Meta:
         model = Review
-        fields = ['title', 'body']  # 입력받을 필드를 정의
+        fields = ['title', 'body', 'photo']  # 입력받을 필드를 정의
