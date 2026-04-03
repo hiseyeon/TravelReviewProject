@@ -9,3 +9,13 @@ class Review(models.Model):
 
     def __str__(self):  #admin에서 글 제목을 표시
         return self.title
+    
+
+# 댓글 작성
+class Comment(models.Model):
+    comment = models.CharField(max_length=200)
+    date = models.DateTimeField(auto_now_add=True)
+    article = models.ForeignKey(Review, on_delete=models.CASCADE, related_name='comments')
+    
+    def __str__(self): 
+        return self.comment

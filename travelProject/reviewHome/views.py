@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404 
-from travel.models import Review
-from travel.forms import ReviewModelForm
+from travel.models import Review, Comment
+from travel.forms import ReviewModelForm, CommentForm
 
 # Create your views here.
 def reviewHome(request):
@@ -13,7 +13,12 @@ def blog_list(request):
 
 def blog_detail(request, blog_id):
     blog = get_object_or_404(Review, pk=blog_id)
-    return render(request, "blog_detail.html", {"review": blog})
+    comment_form = CommentForm()
+    context = {
+        'review' : blog,
+        'comment_form': comment_form
+    }
+    return render(request, 'blog_detail.html', context)
 
 
 def blog_update(request, id):
@@ -33,3 +38,34 @@ def blog_delete(request, id):
     blog = Review.objects.get(pk=id)
     blog.delete()
     return redirect('blog_list')
+
+
+# 댓글 작성
+def create_comment(request, id):
+    filled_form = CommentForm(request.POST)
+    if filled_form.is_valid():
+        finished_form = filled_form.save(commit=False)
+        finished_form.article = get_object_or_404(Review, pk=id)
+        finished_form.save()
+    return redirect('blog_detail', id)
+
+# 댓글 수정
+def update_comment(request, blog_id, com_id):
+    comment = Comment.objects.get(id=com_id)
+	    
+    if request.method == "POST": # 사용자가 수정 후 POST 요청을 보냈을 때
+        updated_form = CommentForm(request.POST, instance=comment)
+        if updated_form.is_valid():
+            updated_form.save()
+            return redirect('blog_detail', blog_id)
+    else: # GET 요청일 때
+        comment_form = CommentForm(instance=comment)
+        context = {'comment_form' : comment_form}
+        return render(request, 'comment_update.html', context)
+    
+
+# 댓글 삭제
+def delete_comment(request, blog_id, com_id):
+    comment = Comment.objects.get(id=com_id)
+    comment.delete()
+    return redirect('blog_detail', blog_id)
