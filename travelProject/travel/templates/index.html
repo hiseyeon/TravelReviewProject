@@ -168,10 +168,15 @@
                         </div>
                     </div>
                 </div>
+                <!-- 새 글 작성 -->
+                {% if user.is_authenticated %}
                 <div class="d-flex justify-content-end mb-4">
                     <a class="btn btn-primary text-uppercase" href="{% url 'create' %}">
                         새 리뷰 작성하기
                     </a>
+                    {%else %}
+                    <h4>글 작성은 로그인 후 사용해주세요</h4>
+                    {% endif %}
                 </div>
 
                 <div class="row gx-5">
