@@ -20,5 +20,7 @@ class Comment(models.Model):
     date = models.DateTimeField(auto_now_add=True)
     article = models.ForeignKey(Review, on_delete=models.CASCADE, related_name='comments')
     
+    author = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
+    
     def __str__(self): 
         return self.comment

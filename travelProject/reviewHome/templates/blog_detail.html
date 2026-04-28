@@ -108,16 +108,18 @@
                       <img class="rounded-circle" src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..." />
                     </div>
                     <div class="ms-3 w-100">
-                      <div class="fw-bold">익명 사용자</div>
+                      <div class="fw-bold">작성자: {{comment.author}}</div>
                       <div class="text-muted small mb-2">{{ comment.date }}</div>
                       <div>{{ comment.comment }}</div>
 
+                      {% if request.user == comment.author %}
                       <div class="mt-2">
                         <a class="btn btn-primary text-uppercase"
                           href="{% url 'update_comment' review.id comment.id %}">댓글 수정</a>
                         <a class="btn btn-primary text-uppercase"
                           href="{% url 'delete_comment' review.id comment.id %}">댓글 삭제</a>
                       </div>
+                      {%endif %}
                     </div>
                   </div>
                   {% endfor %}

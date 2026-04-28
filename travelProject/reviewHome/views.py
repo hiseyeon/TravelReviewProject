@@ -50,6 +50,7 @@ def create_comment(request, id):
     if filled_form.is_valid():
         finished_form = filled_form.save(commit=False)
         finished_form.article = get_object_or_404(Review, pk=id)
+        finished_form.author = request.user
         finished_form.save()
     return redirect('blog_detail', id)
 
