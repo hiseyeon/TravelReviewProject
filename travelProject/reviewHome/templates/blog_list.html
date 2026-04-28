@@ -94,7 +94,8 @@
                 <div class="small text-muted">{{ review.created_at }}</div>
 
                 <a class="link-dark text-decoration-none" href="{% url 'blog_detail' review.id %}">
-                    <h3>{{ review.title }}</h3>
+                  <h5 class="review-author">작성자 : {{review.author}}</h5>  
+                  <h3>{{ review.title }}</h3>
                 </a>
                 <p class="mb-2">{{ review.body }}</p>
               </div>

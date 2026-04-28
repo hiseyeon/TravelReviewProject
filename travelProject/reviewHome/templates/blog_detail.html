@@ -66,13 +66,16 @@
         <div class="row gx-5 justify-content-center">
           <div class="col-lg-8">
 
+            {% if request.user == post.author %}
             <div class="d-flex justify-content-end mb-4 gap-2">
               <a class="btn btn-outline-primary" href="{% url 'blog_update' review.id %}">수정</a>
               <a class="btn btn-outline-danger" href="{% url 'blog_delete' review.id %}">삭제</a>
             </div>
+            {% endif %}
 
             <article>
               <h1 class="fw-bolder mb-3">{{ review.title }}</h1>
+              <h4>작성자 : {{review.author}}</h4>
               <div class="text-muted fst-italic mb-4">{{ review.created_at }}</div>
               {% if review.photo %}
               <img src="{{ review.photo.url }}" alt="" height="300">
@@ -98,7 +101,7 @@
                   {%else %}
                   <h>댓글 작성은 로그인 후 사용해주세요</h>
                   {% endif %}
-                  
+
                   {% for comment in review.comments.all %}
                   <div class="d-flex mb-4">
                     <div class="flex-shrink-0">
