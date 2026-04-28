@@ -1,163 +1,184 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="ko">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-  <meta name="description" content="" />
-  <meta name="author" content="" />
-  <title>{{ review.title }} - Review Detail</title>
+  <title>{{ review.title }} — TravelLog</title>
   <link rel="icon" type="image/x-icon" href="{% static 'assets/favicon.ico' %}" />
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
   <link href="{% static 'css/styles.css' %}" rel="stylesheet" />
 </head>
+<body class="d-flex flex-column h-100">
+<main class="flex-shrink-0">
 
-<body class="d-flex flex-column">
-  <main class="flex-shrink-0">
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-      <div class="container px-5">
-        <a class="navbar-brand" href="{% url 'home' %}">Start Bootstrap</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-            <li class="nav-item"><a class="nav-link" href="{% url 'home' %}">Home</a></li>
-            <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" id="navbarDropdownBlog" href="#" role="button"
-                data-bs-toggle="dropdown" aria-expanded="false">
-                Review
-              </a>
-              <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownBlog">
-                <li><a class="dropdown-item" href="{% url 'blog_list' %}">Review Home</a></li>
-                <li><a class="dropdown-item" href="{% url 'review' %}">Review Post</a></li>
-              </ul>
-            </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" id="navbarDropdownPortfolio" href="#" role="button"
-                data-bs-toggle="dropdown" aria-expanded="false">
-                Portfolio
-              </a>
-              <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownPortfolio">
-                <li><a class="dropdown-item" href="{% url 'country' %}">Country</a></li>
-                <li><a class="dropdown-item" href="portfolio-item.html">Portfolio Item</a></li>
-              </ul>
-            </li>
-          </ul>
-        </div>
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg travel-nav">
+    <div class="container px-5">
+      <a class="navbar-brand" href="{% url 'home' %}">Travel<span>Log</span></a>
+      <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse"
+        data-bs-target="#navbarMain" aria-controls="navbarMain" aria-expanded="false">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarMain">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-lg-center gap-1">
+          <li class="nav-item"><a class="nav-link" href="{% url 'home' %}"><i class="bi bi-house me-1"></i>홈</a></li>
+          <li class="nav-item"><a class="nav-link" href="{% url 'blog_list' %}"><i class="bi bi-journal-text me-1"></i>리뷰 목록</a></li>
+          <li class="nav-item"><a class="nav-link" href="{% url 'country' %}"><i class="bi bi-globe me-1"></i>나라별 보기</a></li>
+          {% if user.is_authenticated %}
+          <li class="nav-item"><a class="nav-link" href="{% url 'create' %}"><i class="bi bi-pencil-square me-1"></i>리뷰 작성</a></li>
+          <li class="nav-item ms-1">
+            <a class="nav-link nav-btn-signup" href="{% url 'accounts:logout' %}"><i class="bi bi-box-arrow-right me-1"></i>로그아웃</a>
+          </li>
+          {% else %}
+          <li class="nav-item ms-1">
+            <a class="nav-link nav-btn-login" href="{% url 'accounts:login' %}">로그인</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link nav-btn-signup" href="{% url 'accounts:signup' %}">회원가입</a>
+          </li>
+          {% endif %}
+        </ul>
       </div>
-    </nav>
+    </div>
+  </nav>
 
-    <header class="bg-light py-5">
-      <div class="container px-5">
-        <div class="text-center">
-          <h1 class="fw-bolder">게시글 상세 페이지</h1>
-          <p class="lead fw-normal text-muted mb-0">게시글의 상세 내용을 확인하세요</p>
-        </div>
-      </div>
-    </header>
+  <section class="py-5">
+    <div class="container px-5">
+      <div class="row gx-5 justify-content-center">
+        <div class="col-lg-8">
 
-    <section class="py-5">
-      <div class="container px-5">
-        <div class="row gx-5 justify-content-center">
-          <div class="col-lg-8">
+          <!-- 뒤로가기 -->
+          <a href="{% url 'blog_list' %}" class="text-decoration-none text-muted small mb-4 d-inline-flex align-items-center gap-1">
+            <i class="bi bi-arrow-left"></i> 리뷰 목록으로
+          </a>
 
-            {% if request.user == post.author %}
-            <div class="d-flex justify-content-end mb-4 gap-2">
-              <a class="btn btn-outline-primary" href="{% url 'blog_update' review.id %}">수정</a>
-              <a class="btn btn-outline-danger" href="{% url 'blog_delete' review.id %}">삭제</a>
+          <!-- 수정/삭제 버튼 (작성자만) -->
+          {% if request.user == review.author %}
+          <div class="d-flex justify-content-end gap-2 mb-3">
+            <a class="btn btn-sm btn-outline-secondary rounded-pill px-3" href="{% url 'blog_update' review.id %}">
+              <i class="bi bi-pencil me-1"></i>수정
+            </a>
+            <a class="btn btn-sm btn-outline-danger rounded-pill px-3" href="{% url 'blog_delete' review.id %}">
+              <i class="bi bi-trash me-1"></i>삭제
+            </a>
+          </div>
+          {% endif %}
+
+          <!-- Article -->
+          <article>
+            <div class="article-header mb-4">
+              <h1 class="fw-bolder mb-3">{{ review.title }}</h1>
+              <div class="d-flex align-items-center gap-3">
+                <div class="comment-avatar">{{ review.author.username|first|upper }}</div>
+                <div>
+                  <div class="fw-semibold" style="font-size:0.95rem;">{{ review.author }}</div>
+                  <div class="text-muted small">{{ review.created_at }}</div>
+                </div>
+              </div>
+            </div>
+
+            {% if review.photo %}
+            <img src="{{ review.photo.url }}" alt="리뷰 사진" class="article-photo">
+            {% endif %}
+
+            <div class="article-body" style="white-space: pre-wrap;">{{ review.body }}</div>
+          </article>
+
+          <hr class="my-5" style="border-color:#e2e8f0;">
+
+          <!-- 댓글 섹션 -->
+          <section>
+            <h4 class="fw-bold mb-4">
+              <i class="bi bi-chat-dots me-2" style="color:var(--travel-primary);"></i>댓글
+            </h4>
+
+            <!-- 댓글 작성 폼 -->
+            {% if user.is_authenticated %}
+            <div class="form-card mb-4" style="padding:1.5rem;">
+              <form method="POST" action="{% url 'create_comment' review.id %}">
+                {% csrf_token %}
+                <div class="d-flex gap-3 align-items-start">
+                  <div class="comment-avatar flex-shrink-0">{{ user.username|first|upper }}</div>
+                  <div class="flex-grow-1">
+                    {{ comment_form.as_p }}
+                    <button type="submit" class="btn btn-primary rounded-pill px-4 mt-2" style="font-size:0.85rem;">
+                      <i class="bi bi-send me-1"></i>댓글 작성
+                    </button>
+                  </div>
+                </div>
+              </form>
+            </div>
+            {% else %}
+            <div class="travel-notice mb-4">
+              <i class="bi bi-lock me-1"></i>
+              댓글 작성은 <a href="{% url 'accounts:login' %}" class="fw-semibold">로그인</a> 후 이용하실 수 있습니다.
             </div>
             {% endif %}
 
-            <article>
-              <h1 class="fw-bolder mb-3">{{ review.title }}</h1>
-              <h4>작성자 : {{review.author}}</h4>
-              <div class="text-muted fst-italic mb-4">{{ review.created_at }}</div>
-              {% if review.photo %}
-              <img src="{{ review.photo.url }}" alt="" height="300">
-              {% endif %}
-              <p class="fs-5 mb-4" style="white-space: pre-wrap;">{{ review.body }}</p>
-            </article>
-
-
-            <!-- 여기부터 댓글 섹션 추가 -->
-            <section class="mt-5">
-              <div class="card bg-light">
-                <div class="card-body">
-                  <h4 class="mb-4">댓글</h4>
-
-                  {%if user.is_authenticated %}
-                  <form class="mb-4" method="POST" action="{% url 'create_comment' review.id %}">
-                    {% csrf_token %}
-                    {{ comment_form.as_table }}
-                    <div class="mt-2">
-                      <button type="submit" class="btn btn-primary">댓글 작성</button>
-                    </div>
-                  </form>
-                  {%else %}
-                  <h>댓글 작성은 로그인 후 사용해주세요</h>
-                  {% endif %}
-
-                  {% for comment in review.comments.all %}
-                  <div class="d-flex mb-4">
-                    <div class="flex-shrink-0">
-                      <img class="rounded-circle" src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..." />
-                    </div>
-                    <div class="ms-3 w-100">
-                      <div class="fw-bold">작성자: {{comment.author}}</div>
-                      <div class="text-muted small mb-2">{{ comment.date }}</div>
-                      <div>{{ comment.comment }}</div>
-
-                      {% if request.user == comment.author %}
-                      <div class="mt-2">
-                        <a class="btn btn-primary text-uppercase"
-                          href="{% url 'update_comment' review.id comment.id %}">댓글 수정</a>
-                        <a class="btn btn-primary text-uppercase"
-                          href="{% url 'delete_comment' review.id comment.id %}">댓글 삭제</a>
+            <!-- 댓글 목록 -->
+            <div class="comment-card card p-3">
+              {% for comment in review.comments.all %}
+              <div class="comment-item">
+                <div class="d-flex gap-3">
+                  <div class="comment-avatar flex-shrink-0">{{ comment.author.username|first|upper }}</div>
+                  <div class="flex-grow-1">
+                    <div class="d-flex justify-content-between align-items-start">
+                      <div>
+                        <span class="fw-semibold" style="font-size:0.9rem;">{{ comment.author }}</span>
+                        <span class="text-muted small ms-2">{{ comment.date }}</span>
                       </div>
-                      {%endif %}
+                      {% if request.user == comment.author %}
+                      <div class="d-flex gap-2">
+                        <a class="btn btn-sm btn-outline-secondary rounded-pill px-2 py-0"
+                          href="{% url 'update_comment' review.id comment.id %}" style="font-size:0.75rem;">수정</a>
+                        <a class="btn btn-sm btn-outline-danger rounded-pill px-2 py-0"
+                          href="{% url 'delete_comment' review.id comment.id %}" style="font-size:0.75rem;">삭제</a>
+                      </div>
+                      {% endif %}
                     </div>
+                    <p class="mt-1 mb-0" style="font-size:0.9rem;color:#334155;">{{ comment.comment }}</p>
                   </div>
-                  {% endfor %}
                 </div>
               </div>
-            </section>
-
-            <div class="mt-5">
-              <a class="btn btn-secondary" href="{% url 'blog_list' %}">목록으로 돌아가기</a>
+              {% empty %}
+              <div class="text-center py-4 text-muted small">
+                <i class="bi bi-chat-square-dots" style="font-size:2rem;display:block;margin-bottom:0.5rem;color:#cbd5e1;"></i>
+                아직 댓글이 없습니다. 첫 댓글을 남겨보세요!
+              </div>
+              {% endfor %}
             </div>
+          </section>
 
+          <div class="mt-4">
+            <a href="{% url 'blog_list' %}" class="btn btn-outline-secondary rounded-pill px-4">
+              <i class="bi bi-arrow-left me-1"></i>목록으로
+            </a>
           </div>
-        </div>
-      </div>
-    </section>
 
-
-  </main>
-
-  <footer class="bg-dark py-4 mt-auto">
-    <div class="container px-5">
-      <div class="row align-items-center justify-content-between flex-column flex-sm-row">
-        <div class="col-auto">
-          <div class="small m-0 text-white">Copyright &copy; Your Website 2023</div>
-        </div>
-        <div class="col-auto">
-          <a class="link-light small" href="#!">Privacy</a>
-          <span class="text-white mx-1">&middot;</span>
-          <a class="link-light small" href="#!">Terms</a>
-          <span class="text-white mx-1">&middot;</span>
-          <a class="link-light small" href="#!">Contact</a>
         </div>
       </div>
     </div>
-  </footer>
+  </section>
+</main>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="{% static 'js/scripts.js' %}"></script>
+<!-- Footer -->
+<footer class="travel-footer mt-auto">
+  <div class="container px-5">
+    <div class="d-flex justify-content-between align-items-center flex-wrap gap-2">
+      <div class="footer-brand">Travel<span>Log</span></div>
+      <div class="d-flex gap-3 small">
+        <a href="{% url 'home' %}">홈</a>
+        <a href="{% url 'blog_list' %}">리뷰 목록</a>
+        <a href="{% url 'country' %}">나라별 보기</a>
+      </div>
+    </div>
+    <hr class="footer-divider">
+    <div class="small text-center">© 2026 TravelLog. All rights reserved.</div>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="{% static 'js/scripts.js' %}"></script>
 </body>
-
 </html>

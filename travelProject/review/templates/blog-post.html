@@ -1,154 +1,138 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <meta name="description" content="" />
-        <meta name="author" content="" />
-        <title>Modern Business - Start Bootstrap Template</title>
-        <!-- Favicon-->
-        <link rel="icon" type="image/x-icon" href="{% static 'assets/favicon.ico' %}" />
-        <!-- Bootstrap icons-->
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
-        <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="{% static 'css/styles.css' %}" rel="stylesheet" />
-    </head>
-    <body class="d-flex flex-column">
-        <main class="flex-shrink-0">
-            <!-- Navigation-->
-            <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-                <div class="container px-5">
-                    <a class="navbar-brand" href="{%url 'home' %}">Start Bootstrap</a>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                            <li class="nav-item"><a class="nav-link" href="{%url 'home' %}">Home</a></li>
-                            <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
-                            <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
-                            <li class="nav-item"><a class="nav-link" href="pricing.html">Pricing</a></li>
-                            <li class="nav-item"><a class="nav-link" href="faq.html">FAQ</a></li>
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" id="navbarDropdownBlog" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Review</a>
-                                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownBlog">
-                                    <li><a class="dropdown-item" href="{%url 'blog_list' %}">Review Home</a></li>
-                                    <li><a class="dropdown-item" href="{%url 'review' %}">Review Post</a></li>
-                                </ul>
-                            </li>
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" id="navbarDropdownPortfolio" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Portfolio</a>
-                                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownPortfolio">
-                                    <li><a class="dropdown-item" href="{%url 'country' %}">Country</a></li>
-                                    <li><a class="dropdown-item" href="portfolio-item.html">Portfolio Item</a></li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </nav>
-            <!-- Page Content-->
-            <section class="py-5">
-                <div class="container px-5 my-5">
-                    <div class="row gx-5">
-                        <div class="col-lg-3">
-                            <div class="d-flex align-items-center mt-lg-5 mb-4">
-                                <img class="img-fluid rounded-circle" src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..." />
-                                <div class="ms-3">
-                                    <div class="fw-bold">Valerie Luna</div>
-                                    <div class="text-muted">News, Business</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-9">
-                            <!-- Post content-->
-                            <article>
-                                <!-- Post header-->
-                                <header class="mb-4">
-                                    <!-- Post title-->
-                                    <h1 class="fw-bolder mb-1">Welcome to Blog Post!</h1>
-                                    <!-- Post meta content-->
-                                    <div class="text-muted fst-italic mb-2">January 1, 2023</div>
-                                    <!-- Post categories-->
-                                    <a class="badge bg-secondary text-decoration-none link-light" href="#!">Web Design</a>
-                                    <a class="badge bg-secondary text-decoration-none link-light" href="#!">Freebies</a>
-                                </header>
-                                <!-- Preview image figure-->
-                                <figure class="mb-4"><img class="img-fluid rounded" src="https://dummyimage.com/900x400/ced4da/6c757d.jpg" alt="..." /></figure>
-                                <!-- Post content-->
-                                <section class="mb-5">
-                                    <p class="fs-5 mb-4">Science is an enterprise that should be cherished as an activity of the free human mind. Because it transforms who we are, how we live, and it gives us an understanding of our place in the universe.</p>
-                                    <p class="fs-5 mb-4">The universe is large and old, and the ingredients for life as we know it are everywhere, so there's no reason to think that Earth would be unique in that regard. Whether of not the life became intelligent is a different question, and we'll see if we find that.</p>
-                                    <p class="fs-5 mb-4">If you get asteroids about a kilometer in size, those are large enough and carry enough energy into our system to disrupt transportation, communication, the food chains, and that can be a really bad day on Earth.</p>
-                                    <h2 class="fw-bolder mb-4 mt-5">I have odd cosmic thoughts every day</h2>
-                                    <p class="fs-5 mb-4">For me, the most fascinating interface is Twitter. I have odd cosmic thoughts every day and I realized I could hold them to myself or share them with people who might be interested.</p>
-                                    <p class="fs-5 mb-4">Venus has a runaway greenhouse effect. I kind of want to know what happened there because we're twirling knobs here on Earth without knowing the consequences of it. Mars once had running water. It's bone dry today. Something bad happened there as well.</p>
-                                </section>
-                            </article>
-                            <!-- Comments section-->
-                            <section>
-                                <div class="card bg-light">
-                                    <div class="card-body">
-                                        <!-- Comment form-->
-                                        <form class="mb-4"><textarea class="form-control" rows="3" placeholder="Join the discussion and leave a comment!"></textarea></form>
-                                        <!-- Comment with nested comments-->
-                                        <div class="d-flex mb-4">
-                                            <!-- Parent comment-->
-                                            <div class="flex-shrink-0"><img class="rounded-circle" src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..." /></div>
-                                            <div class="ms-3">
-                                                <div class="fw-bold">Commenter Name</div>
-                                                If you're going to lead a space frontier, it has to be government; it'll never be private enterprise. Because the space frontier is dangerous, and it's expensive, and it has unquantified risks.
-                                                <!-- Child comment 1-->
-                                                <div class="d-flex mt-4">
-                                                    <div class="flex-shrink-0"><img class="rounded-circle" src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..." /></div>
-                                                    <div class="ms-3">
-                                                        <div class="fw-bold">Commenter Name</div>
-                                                        And under those conditions, you cannot establish a capital-market evaluation of that enterprise. You can't get investors.
-                                                    </div>
-                                                </div>
-                                                <!-- Child comment 2-->
-                                                <div class="d-flex mt-4">
-                                                    <div class="flex-shrink-0"><img class="rounded-circle" src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..." /></div>
-                                                    <div class="ms-3">
-                                                        <div class="fw-bold">Commenter Name</div>
-                                                        When you put money directly to a problem, it makes a good headline.
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- Single comment-->
-                                        <div class="d-flex">
-                                            <div class="flex-shrink-0"><img class="rounded-circle" src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..." /></div>
-                                            <div class="ms-3">
-                                                <div class="fw-bold">Commenter Name</div>
-                                                When I look at the universe and all the ways the universe wants to kill us, I find it hard to reconcile that with statements of beneficence.
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </section>
-                        </div>
-                    </div>
-                </div>
-            </section>
-        </main>
-        <!-- Footer-->
-        <footer class="bg-dark py-4 mt-auto">
-            <div class="container px-5">
-                <div class="row align-items-center justify-content-between flex-column flex-sm-row">
-                    <div class="col-auto"><div class="small m-0 text-white">Copyright &copy; Your Website 2023</div></div>
-                    <div class="col-auto">
-                        <a class="link-light small" href="#!">Privacy</a>
-                        <span class="text-white mx-1">&middot;</span>
-                        <a class="link-light small" href="#!">Terms</a>
-                        <span class="text-white mx-1">&middot;</span>
-                        <a class="link-light small" href="#!">Contact</a>
-                    </div>
-                </div>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <title>리뷰 — TravelLog</title>
+  <link rel="icon" type="image/x-icon" href="{% static 'assets/favicon.ico' %}" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+  <link href="{% static 'css/styles.css' %}" rel="stylesheet" />
+</head>
+<body class="d-flex flex-column h-100">
+<main class="flex-shrink-0">
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg travel-nav">
+    <div class="container px-5">
+      <a class="navbar-brand" href="{% url 'home' %}">Travel<span>Log</span></a>
+      <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse"
+        data-bs-target="#navbarMain" aria-controls="navbarMain" aria-expanded="false">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarMain">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-lg-center gap-1">
+          <li class="nav-item"><a class="nav-link" href="{% url 'home' %}"><i class="bi bi-house me-1"></i>홈</a></li>
+          <li class="nav-item"><a class="nav-link" href="{% url 'blog_list' %}"><i class="bi bi-journal-text me-1"></i>리뷰 목록</a></li>
+          <li class="nav-item"><a class="nav-link" href="{% url 'country' %}"><i class="bi bi-globe me-1"></i>나라별 보기</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <section class="py-5">
+    <div class="container px-5 my-3">
+      <div class="row gx-5">
+
+        <!-- Author Sidebar -->
+        <div class="col-lg-3 mb-5 mb-lg-0">
+          <div class="d-flex align-items-center mt-lg-5 mb-4 gap-3">
+            <div class="comment-avatar">V</div>
+            <div>
+              <div class="fw-bold" style="font-size:0.95rem;">Valerie Luna</div>
+              <div class="text-muted small">여행 · 문화</div>
             </div>
-        </footer>
-        <!-- Bootstrap core JS-->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-        <!-- Core theme JS-->
-        <script src="js/scripts.js"></script>
-    </body>
+          </div>
+          <div class="travel-notice" style="font-size:0.82rem;">
+            <i class="bi bi-info-circle me-1"></i>
+            이 글은 예시 리뷰입니다. 실제 리뷰는 리뷰 목록에서 확인하세요.
+          </div>
+          <div class="mt-3">
+            <a href="{% url 'blog_list' %}" class="btn btn-outline-primary btn-sm rounded-pill w-100">
+              <i class="bi bi-journal-text me-1"></i>리뷰 목록 보기
+            </a>
+          </div>
+        </div>
+
+        <!-- Post Content -->
+        <div class="col-lg-9">
+          <article>
+            <header class="mb-4">
+              <span class="badge-travel mb-3 d-inline-block">여행 후기</span>
+              <h1 class="fw-bolder mb-2" style="font-family:'Playfair Display',serif;font-size:2rem;">
+                Welcome to TravelLog!
+              </h1>
+              <div class="d-flex align-items-center gap-3 text-muted small">
+                <span><i class="bi bi-calendar3 me-1"></i>2026년 1월 1일</span>
+                <span><i class="bi bi-clock me-1"></i>5분 읽기</span>
+              </div>
+            </header>
+
+            <img src="https://picsum.photos/seed/blogpost/900/400"
+              alt="여행 사진" class="article-photo">
+
+            <div class="article-body">
+              <p>TravelLog에 오신 것을 환영합니다. 이곳은 전 세계 여행자들이 자신의 여행 경험을 공유하는 커뮤니티 블로그입니다.</p>
+              <p>직접 경험한 숨겨진 명소, 현지 맛집, 저렴한 숙소 정보, 여행 팁을 자유롭게 작성하고 다른 여행자들과 나눠보세요.</p>
+              <h2 class="fw-bold mt-5 mb-3" style="font-size:1.4rem;">여행이 주는 선물</h2>
+              <p>여행은 우리에게 새로운 시각과 경험을 선물합니다. 낯선 문화와의 만남, 예상치 못한 풍경과의 조우, 그리고 현지인들과의 따뜻한 교류가 삶을 더욱 풍요롭게 만들어줍니다.</p>
+              <p>지금 바로 나만의 여행 이야기를 TravelLog에 기록해보세요.</p>
+            </div>
+          </article>
+
+          <hr class="my-5" style="border-color:#e2e8f0;">
+
+          <!-- Comments -->
+          <section>
+            <h4 class="fw-bold mb-4">
+              <i class="bi bi-chat-dots me-2" style="color:var(--travel-primary);"></i>댓글
+            </h4>
+            <div class="comment-card card p-3">
+              <form class="mb-4">
+                <textarea class="form-control" rows="3" placeholder="댓글을 작성하려면 로그인해주세요."
+                  style="border-radius:10px;border-color:#e2e8f0;" disabled></textarea>
+              </form>
+              <div class="comment-item">
+                <div class="d-flex gap-3">
+                  <div class="comment-avatar flex-shrink-0">T</div>
+                  <div>
+                    <div class="fw-semibold" style="font-size:0.9rem;">여행자</div>
+                    <p class="mt-1 mb-0 text-muted small">정말 유용한 정보 감사합니다! 다음 여행에 꼭 참고할게요.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <div class="mt-4">
+            <a href="{% url 'blog_list' %}" class="btn btn-outline-secondary rounded-pill px-4">
+              <i class="bi bi-arrow-left me-1"></i>목록으로
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- Footer -->
+<footer class="travel-footer mt-auto">
+  <div class="container px-5">
+    <div class="d-flex justify-content-between align-items-center flex-wrap gap-2">
+      <div class="footer-brand">Travel<span>Log</span></div>
+      <div class="d-flex gap-3 small">
+        <a href="{% url 'home' %}">홈</a>
+        <a href="{% url 'blog_list' %}">리뷰 목록</a>
+        <a href="{% url 'country' %}">나라별 보기</a>
+      </div>
+    </div>
+    <hr class="footer-divider">
+    <div class="small text-center">© 2026 TravelLog. All rights reserved.</div>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="{% static 'js/scripts.js' %}"></script>
+</body>
 </html>
